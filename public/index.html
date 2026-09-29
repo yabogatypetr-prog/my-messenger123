@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messenger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ЭКРАН ВХОДА -->
+  <div id="login-screen" class="screen">
+    <div class="login-box">
+      <h2>Мессенджер</h2>
+      <input id="login-email" type="text" placeholder="Email или телефон" />
+      <input id="login-password" type="password" placeholder="Пароль" />
+      <button onclick="doLogin()">Войти</button>
+      <div class="divider"><span>или</span></div>
+      <input id="reg-username" type="text" placeholder="Имя (ник)" />
+      <input id="reg-email" type="text" placeholder="Email или телефон" />
+      <input id="reg-password" type="password" placeholder="Пароль" />
+      <button onclick="doRegister()" class="btn-secondary">Зарегистрироваться</button>
+      <div id="auth-error" class="error"></div>
+    </div>
+  </div>
+
+  <!-- ОСНОВНОЙ ИНТЕРФЕЙС -->
+  <div id="chat-app" class="app-container" style="display:none;">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Чаты</h3>
+      </div>
+      <div id="chat-list" class="chat-list">
+        <div class="chat-item active" onclick="openChat(null,'Общий чат')">
+          <div class="avatar">G</div>
+          <div class="info"><strong>Общий чат</strong><small>Все пользователи</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="main-area">
+      <div class="chat-header"><h3 id="current-chat-title">Общий чат</h3></div>
+      <div id="messages" class="messages"></div>
+      <form id="chat-form" onsubmit="sendMessage(event)">
+        <input id="message-input" type="text" placeholder="Сообщение..." required />
+        <button type="submit">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
